@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Party>	
+		<friend>
+		<xs:attribute name="001" type="xs:ID"/>
+			<FirstName>John</FirstName>
+			<LastName>Smith</LastName>
+			<gender>M</gender>
+			<attend>TRUE</attend>
+			<guests> 8</guests>	
+			<note> this guy is awesome</note>	
+			<tag1> FALSE</tag1>
+			<tag2> TRUE</tag2>
+			<tag3> TRUE</tag3>
+ 		</Friend>
+	</Party>
