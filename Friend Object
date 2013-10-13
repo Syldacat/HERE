@@ -102,6 +102,11 @@ public class Friend {
 		this.firstName = firstName;
 	}
 	
+/*
+ * getFirstName
+ * Accessor method which displays the first name of the method.
+ * @return The first name of the person.
+ */
 	public String getFirstName()
 	{
 		return firstName;
@@ -120,7 +125,7 @@ public class Friend {
 	
 	public String getLastName()
 	{
-		return lastName;
+		return lastName; 
 	}
 	
 	public void setGender(char gender)
@@ -173,7 +178,7 @@ public class Friend {
 		this.tag1 = tag;
 	}
 	
-	public boolean getTat1()
+	public boolean getTag1()
 	{
 		return tag1;
 	}
@@ -183,7 +188,7 @@ public class Friend {
 		this.tag2 = tag;
 	}
 	
-	public boolean getTat2()
+	public boolean getTag2()
 	{
 		return tag2;
 	}
@@ -193,8 +198,14 @@ public class Friend {
 		this.tag3 = tag;
 	}
 	
-	public boolean getTat3()
+	public boolean getTag3()
 	{
 		return tag3;
+	}
+	
+	public String toString()
+	{
+		return getUniqueID() + "," + getFirstName() + "," + getLastName() + "," + getGender() + "," + isAttending() 
+				+ "," + getGuests() + "," + getNote() + getTag1() + "," + getTag2() + "," + getTag3();
 	}
 }
