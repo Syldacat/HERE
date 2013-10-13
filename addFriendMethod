@@ -1,0 +1,74 @@
+package HERE;
+
+
+public class addFriend {
+
+	static int uniqueID = 0;
+	
+/*
+ * The addFriendMethod is used to convert an array of raw data from user-input into a fully detailed friend object.
+ * That friend object is then added to the Party LinkedList.  Once it is added to the party linked list then we will
+ * send out the details of what is changing back to the XML.
+ * @param data The raw data of the user-input. This should be formatted into an array of String objects.  Each field
+ * corresponds to a different field of the Friend object.
+ */ 
+	public void addFriendMethod(String[] data)
+	{
+		
+		boolean attending, tag1, tag2, tag3;
+
+		//The first field of the data we are going to need is the uniqueIDString.  The uniqueID is created from here
+		//and is from the static counter.
+		String uniqueIDString = Integer.toString(uniqueID);
+		String uniqueID = "#" + uniqueIDString;
+
+		
+		//The second and third fields of data are the first and lastName.  Thankfully since they are both String
+		//methods we don't have to alter them and can add them to the file directly.
+		
+		//The fourth field is the gender which should be saved a character.  This is relatively simple to convert from
+		//a String to a character.
+		char gender = data[3].trim().charAt(0);
+		
+		//The fifth field is the attending method which we have to convert to a boolean.
+		if (data[4].toUpperCase().equals("TRUE"))
+			attending = Boolean.TRUE;
+		else
+			attending = Boolean.FALSE;
+		
+		//The sixth field is the guests method which needs to be a integer method. 
+		int guests = Integer.parseInt(data[5]);
+		
+		//The seventh field is the notes field which is the notes field which is a string as well.  It doesn't need
+		//to be changed and therefore can be added to the new friend directly.
+		
+		//The eighth, ninth and tenth fields are the tags.  We have to convert them to booleans and then adding them
+		//to Android.
+		
+		if (data[7].toUpperCase().equals("TRUE"))
+			tag1 = Boolean.TRUE;
+		else 
+			tag1 = Boolean.TRUE;
+			
+		if (data[8].toUpperCase().equals("TRUE"))
+			tag2 = Boolean.TRUE;
+		else 
+			tag2 = Boolean.TRUE;
+		
+		if (data[9].toUpperCase().equals("TRUE"))
+			tag3 = Boolean.TRUE;
+		else 
+			tag3 = Boolean.TRUE;
+		
+		//Now that all ten fields are formatted correctly it is time to create the field class.  We pass all the
+		//fields into the loaded constructor and create the Friend object.
+			Friend newFriend = new Friend(uniqueID, data[0], data[1], gender, attending, guests, data[6], 
+				 tag1, tag2, tag3);
+			
+		//Now we push the new friend into the Party<LinkedList>
+			party.add(newFriend);
+		
+			return newFriend.toString();
+		}
+		
+}
