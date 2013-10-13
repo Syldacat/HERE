@@ -70,8 +70,8 @@ public class Friend {
 	public void setUniqueID(String uniqueID)
 	{	
 		//Check to see if the uniqueID is the in the proper format aka with the first line being the 
-		if (uniqueID.charAt(0) != '#' || uniqueID.trim().length() > 7)
-			uniqueID = "#99999";
+		if (uniqueID.charAt(0) != '#' || uniqueID.trim().length() > 4)
+			uniqueID = "#999";
 		
 		this.uniqueID = uniqueID;
 	}
