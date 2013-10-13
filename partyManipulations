@@ -1,7 +1,9 @@
 package HERE;
 
+import java.util.LinkedList;
 
-public class addFriend {
+
+public class PartyManipulations {
 
 	static int uniqueID = 0;
 	
@@ -12,9 +14,36 @@ public class addFriend {
  * @param data The raw data of the user-input. This should be formatted into an array of String objects.  Each field
  * corresponds to a different field of the Friend object.
  */ 
-	public void addFriendMethod(String[] data)
+	public String addFriendMethod(String[] data)
 	{
+	
+		//In this method the first thing we do is to take the raw data from the user input and then we format this
+		//data into a Friend object which we can manipulate.  We have an external method which does this.
+			Friend newFriend = formatFriendData(data);
+			
+		//Now we push the new friend into the Party<LinkedList>
+			party.add(newFriend);
 		
+			return newFriend.toString();
+		}
+		
+	public String editfriendMethod(String[] data)
+	{
+		//In this method the first thing we need to do is to take the raw data from the user input and then from
+		//there we need to format this data into a friend object.  We have an external method we use to do this.
+		
+			Friend newFriend = formatFriendData(data);
+		
+		//Once we got the newFriend saved into memory we have to worry about replacing this newFriend with the old
+		//friend method.  In order to do this first we must pull out the old friend from the linkedList.
+			int index = IDSearch(party, data[0]);
+			party.add(index, newFriend);
+			
+			return newFriend.toString();
+	}
+	
+	public Friend formatFriendData(String[] data)
+	{
 		boolean attending, tag1, tag2, tag3;
 
 		//The first field of the data we are going to need is the uniqueIDString.  The uniqueID is created from here
@@ -64,11 +93,37 @@ public class addFriend {
 		//fields into the loaded constructor and create the Friend object.
 			Friend newFriend = new Friend(uniqueID, data[0], data[1], gender, attending, guests, data[6], 
 				 tag1, tag2, tag3);
-			
-		//Now we push the new friend into the Party<LinkedList>
-			party.add(newFriend);
+	}
+	
+	protected int IDSearch(LinkedList<Friend> party, String uniqueID)
+	{
+		return recIDSearch(party, uniqueID, 0);
 		
-			return newFriend.toString();
+	}
+
+//This is the recursive version of the function that is designed to search through the party functions.  
+	private int recIDSearch(LinkedList<Friend> party, String uniqueID, int count)
+	{
+		//First things first, if we have gotten to the end of the LinkedList then we must return a -1 which means
+		//that the code has not found any uniqueID's that match this.  That means something has gone horribly wrong.
+		if (party.get(count) == null)
+		{
+			return -1;
 		}
-		
+		else if(party.get(count).getUniqueID().equals(uniqueID))
+		{
+			
+			
+			//Base Case #2
+			//If we find the ID that has the same uniqueID as the one we are looking for then we will return the index
+			//of this friend object.  We can use this to manipulate it.
+			return count;
+		}
+		else
+		{
+			//This is the general case.  If we still have more method to go
+			return recIDSearch(party, uniqueID, ++count);
+		}
+	}
+
 }
