@@ -1,164 +1,83 @@
-package HERE;
+package Here; 
 
-//The basic Friend class is the main method we will be manipulating.
-//It contains information on each person who is in the party and
-public class Friend {
-
-//These are the important fields which must be initialized in each
-//and every person object. If they are not then we have a problem.
-private String firstName;
-private String lastName;
-private char gender;
-
-//These are the fields that are required by the file for
-private boolean attending;
-private int guests;
-
-//Descriptive Fields
-private String note;
-private boolean tag1;
-private boolean tag2;
-private boolean tag3;
-
-
-public Friend(String firstName, String lastName, char gender)
-{
-setFirstName(firstName);
-setLastName(lastName);
-setGender(gender);
-
-setAttending(Boolean.FALSE);
-setGuests(0);
-
-setNote("");
-setTag1(Boolean.FALSE);
-setTag2(Boolean.FALSE);
-setTag3(Boolean.FALSE);
-}
-
-public Friend(String firstName, String lastName, char gender, boolean attending, int guests, String note,
-boolean tag1,boolean tag2, boolean tag3)
-{
-setFirstName(firstName);
-setLastName(lastName);
-setGender(gender);
-setAttending(attending);
-setGuests(guests);
-setNote(note);
-setTag1(tag1);
-setTag2(tag2);
-setTag3(tag3);
-}
-
-/*
- * setFirstName
- * Accessor method
- * @param firstName The first name of the person.
- */
-public void setFirstName(String firstName)
-{
-String frontEnd = Character.toString(firstName.charAt(0)).toUpperCase();
-
-String backEnd = firstName.substring(1);
-backEnd = backEnd.toLowerCase();
-
-firstName = frontEnd.concat(backEnd);
-this.firstName = firstName;
-}
-
-public String getFirstName()
-{
-return firstName;
-}
-
-public void setLastName(String lastName)
-{
-String frontEnd = Character.toString(lastName.charAt(0)).toLowerCase();
-
-String backEnd = lastName.substring(1);
-backEnd = backEnd.toLowerCase();
-
-lastName = frontEnd.concat(backEnd);
-this.lastName = lastName;
-}
-
-public String getLastName()
-{
-return lastName;
-}
-
-public void setGender(char gender)
-{
-gender = Character.toUpperCase(gender);
-this.gender = gender;
-}
-
-public char getGender()
-{
-return gender;
-}
-
-public void setAttending(boolean attending)
-{
-this.attending = attending;
-}
-
-public boolean isAttending()
-{
-return attending;
-}
-
-public void setGuests(int guests)
-{
-if (guests > 9)
-guests = 9;
-if (guests < 0)
-guests = 0;
-this.guests = guests;
-}
-
-public int getGuests()
-{
-return guests;
-}
-
-public void setNote(String note)
-{
-this.note = note;
-}
-
-public String getNote()
-{
-return note;
-}
-
-public void setTag1(boolean tag)
-{
-this.tag1 = tag;
-}
-
-public boolean getTat1()
-{
-return tag1;
-}
-
-public void setTag2(boolean tag)
-{
-this.tag2 = tag;
-}
-
-public boolean getTat2()
-{
-return tag2;
-}
-
-public void setTag3(boolean tag)
-{
-this.tag3 = tag;
-}
-
-public boolean getTat3()
-{
-return tag3;
-}
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+ 
+public class Party{
+	
+	public static void main(String[] args) {
+	//public LinkedList<Friend> loadNames(){	
+		
+		String csvFile = "Names.csv";
+		BufferedReader br = null;
+		String line = "";
+		String [] Master = null;
+ 
+		try {
+			
+			br = new BufferedReader(new FileReader(csvFile));
+			while ((line = br.readLine()) != null) {
+ 				Master = line.split(",");
+ 				
+			}
+ 
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+	    String lastname = Master[0];
+	    String firstname = Master[1];
+	    String note = Master[5];
+	    
+		Character gender = Master[2].charAt(0);
+		
+		boolean attend;
+		if(Master[3].equals("FALSE")){
+			attend = false;
+		}
+		else if(Master[3].equals("TRUE")){
+			attend = true;
+		}
+		
+		int guests = Integer.parseInt(Master[4]);
+		
+		boolean tag1 = false;;
+		if(Master[6].equals("FALSE")){
+			tag1 = false;
+		}
+		else if(Master[6].equals("TRUE")){
+			tag1= true;
+		}
+		
+		boolean tag2 = false;
+		if(Master[7].equals("FALSE")){
+			tag2 = false;
+		}
+		else if(Master[7].equals("TRUE")){
+			tag2 = true;
+		}
+		
+		boolean tag3 = false;
+		if(Master[8].equals("FALSE")){
+			tag3 = false;
+		}
+		else if(Master[8].equals("TRUE")){
+			tag3 = true;
+		}
+		
+	}
+ 
 }
