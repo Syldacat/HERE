@@ -1,7 +1,8 @@
 package HERE;
 
 //The basic Friend class is the main method we will be manipulating.
-//It contains information on each person who is in the party and 
+//It contains information on each person who is in the party.
+
 public class Friend {
 	
 	private String uniqueID;
